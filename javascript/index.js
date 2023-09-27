@@ -11,6 +11,18 @@ function updateTime() {
     );
   }
 
+  let sydneyElement = document.querySelector("#sydney");
+  if (sydneyElement) {
+    let sydneyDateElement = sydneyElement.querySelector(".date");
+    let sydneyTimeElement = sydneyElement.querySelector(".time");
+    let sydneyTime = moment().tz("Australia/Sydney");
+
+    sydneyDateElement.innerHTML = sydneyTime.format("MMMM	Do YYYY");
+    sydneyTimeElement.innerHTML = sydneyTime.format(
+      "h:mm:ss [<small>]A[</small>]"
+    );
+  }
+
   let parisElement = document.querySelector("#paris");
   if (parisElement) {
     let parisDateElement = parisElement.querySelector(".date");
@@ -42,10 +54,11 @@ function updateCity(event) {
     "A"
   )}</small></div>
   </div>
+  <div id="back"><a href="#" onclick="window.location.reload(true);">Back to cities</a></div>
   `;
 }
 
-updateTime();
+updateTime("#city");
 setInterval(updateTime, 1000);
 
 let citiesSelectElement = document.querySelector("#city");
